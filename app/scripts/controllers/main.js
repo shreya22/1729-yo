@@ -14,7 +14,7 @@ angular.module('1729App')
 MainController.$inject= ['$scope', '$http', '$location', '$window', '$interval', '$timeout'];
 
 function MainController($scope, $http, $location, $window, $interval, $timeout){
-console.log('maincontroller'); this.shreya= "shreya";
+console.log('maincontroller');
     var vm= this;
     vm.gotoElement = function (eID){
         anchorSmoothScroll.scrollTo(eID);
