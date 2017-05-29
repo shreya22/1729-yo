@@ -162,8 +162,11 @@ console.log('maincontroller');
 
         if(CheckResult(postObj).success == true){
             alert("woohooo! You're a champ.");
-            vm.inputs.numbers= ['_', '_', '_', '_'];
-            vm.testOperators= [];
+            // vm.inputs.numbers= ['_', '_', '_', '_'];
+            // vm.testOperators= [];
+
+            console.log('again..');
+            StartGame();
         }
         else alert("no dear.. please try again.");
 
