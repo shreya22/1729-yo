@@ -11,7 +11,7 @@ angular.module('1729App')
   .controller('MainCtrl', MainController);
 
 
-MainController.$inject= ['$scope', '$http', '$location', '$window', '$interval', '$timeout'];
+MainController.$inject= ['$scope', '$http', '$location', '$window', '$interval'];
 
 function MainController($scope, $http, $location, $window, $interval, $timeout){
 console.log('maincontroller');
@@ -27,14 +27,15 @@ console.log('maincontroller');
         numbers: ['_', '_', '_', '_'],
         operators: []
     };
-    vm.timer;
+    vm.timer= null;
     vm.timerStart= TimerStart;
+    vm.timerStop= TimerStop;
 
     vm.testOperators= ['', '', ''];
     vm.startGame= StartGame;
     vm.validate= Validate;
     vm.validationError= '';
-    vm.timeLeft= 30;
+    vm.timeLeft= 10;
 
 
 
@@ -48,9 +49,18 @@ console.log('maincontroller');
     // function CheckResult(){};
 
     function TimerStart(){
-        timer= $timeout(function(){
+        vm.timer= $interval(function(){
             vm.timeLeft--;
+            if(vm.timeLeft == 0) vm.timerStop();
         }, 1000);
+    }
+
+    function TimerStop(){
+        if (angular.isDefined(vm.timer)) {
+            $interval.cancel(vm.timer);
+        }
+        alert('Time Out!');
+        StartGame();
     }
 
     function StartGame() {
@@ -58,7 +68,8 @@ console.log('maincontroller');
 
         let a,b,c,d; 
         vm.testOperators= ['', '', ''];
-        vm.validationError
+        vm.validationError= "";
+        vm.timeLeft= 10;
         // vm.timerStart();
 
          a= Math.floor((Math.random() * 9));

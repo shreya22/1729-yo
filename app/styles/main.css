@@ -95,31 +95,7 @@ body {
     color: #000;
 }
 
-.customButton{
-    background-color: #000;
-    border-color: #000;
-    color: #fff;
-}
-
-.customButton:hover{
-    background-color: #000;
-    border-color: #000;
-    color: #fff;
-}
-
-.customButton:active{
-    background-color: #000;
-    border-color: #000;
-    color: #fff;
-}
-
-.customButton:link{
-    background-color: #000;
-    border-color: #000;
-    color: #fff;
-}
-
-.customButton:visited{
+.customButton, .customButton:active, .customButton:focus, .customButton:hover{
     background-color: #000;
     border-color: #000;
     color: #fff;
@@ -128,12 +104,6 @@ body {
 select.btn-mini {
     height: auto;
     line-height: 14px;
-}
-
-/* this is optional (see below) */
-select.btn {
- /*   -webkit-appearance: button;
-    padding-right: 16px;*/
 }
 
 select.btn-mini + .caret {
