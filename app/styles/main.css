@@ -104,21 +104,25 @@ body {
 .customButton:hover{
     background-color: #000;
     border-color: #000;
+    color: #fff;
 }
 
 .customButton:active{
     background-color: #000;
     border-color: #000;
+    color: #fff;
 }
 
 .customButton:link{
     background-color: #000;
     border-color: #000;
+    color: #fff;
 }
 
 .customButton:visited{
     background-color: #000;
     border-color: #000;
+    color: #fff;
 }
 
 select.btn-mini {
@@ -139,4 +143,16 @@ select.btn-mini + .caret {
 
 .form-inline{
   font-size: 20px;
+}
+
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 18px;
+  line-height: 1.428571429;
+  border-radius: 35px;
+  font-weight: bold;
+  background-color: #fff;
 }

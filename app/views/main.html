@@ -28,7 +28,9 @@
     <div class="row boxColour text-center">
 
             <h2 class="text-center">Lets Play!</h2>
-            <button class="btn btn-default text-center customButton" ng-click="main.startGame()">Start Game</button>
+            <button class="btn text-center customButton" ng-click="main.startGame()">Start Game</button>
+
+            <button class="btn text-center pull-right btn-circle">{{main.timeLeft}}</button>
 
             <!--{{main.inputs}}; <br>-->
             <div>&nbsp;</div>
@@ -83,7 +85,7 @@
                 <b><p class="form-control-static">{{main.inputs.numbers[3]}}</p></b>
               </div>
 
-              <button class="btn btn-default text-center customButton" ng-click="main.validate()">Check Result</button>
+              <button class="btn text-center customButton" ng-click="main.validate()">Check Result</button>
 
             </form>
             <div class="error">{{main.validationError}}</div>

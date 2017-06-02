@@ -27,19 +27,14 @@ console.log('maincontroller');
         numbers: ['_', '_', '_', '_'],
         operators: []
     };
+    vm.timer;
+    vm.timerStart= TimerStart;
 
-    vm.testOperators= [];
+    vm.testOperators= ['', '', ''];
     vm.startGame= StartGame;
     vm.validate= Validate;
     vm.validationError= '';
-    vm.counter= 30;
-    // vm.startTimer= startTimer;
-    // vm.stopTimer= StopTimer;
-
-
-    var mytimeout = null;
-
-
+    vm.timeLeft= 30;
 
 
 
@@ -52,13 +47,19 @@ console.log('maincontroller');
     // function StartGame(){};
     // function CheckResult(){};
 
+    function TimerStart(){
+        timer= $timeout(function(){
+            vm.timeLeft--;
+        }, 1000);
+    }
 
     function StartGame() {
         // console.log('mainAPI');
 
         let a,b,c,d; 
-        vm.testOperators= [];
+        vm.testOperators= ['', '', ''];
         vm.validationError
+        // vm.timerStart();
 
          a= Math.floor((Math.random() * 9));
          b= Math.floor((Math.random() * 9));
@@ -188,7 +189,7 @@ console.log('maincontroller');
     };
 
 
-    function CheckResult(postObj){
+    function CheckResult(postObj){ console.log('postObj', postObj);
 
         let numbers= postObj.numbers;
         let operations= postObj.operators;
@@ -273,9 +274,11 @@ console.log('maincontroller');
             message: "Please press 'Start Game' first."
         }
 
-        if(vm.testOperators.length < 3) return{
-            status: false,
-            message: "No operation can be left empty."
+        for (var i = 0; i < vm.testOperators.length; i++) {
+            if(vm.testOperators[i] == "") return{
+                status: false,
+                message: "No operation can be left empty."
+            }
         }
 
         var countEqual= 0;
