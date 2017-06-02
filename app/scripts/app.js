@@ -10,12 +10,12 @@
  */
 angular
   .module('1729App', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
+    // 'ngAnimate',
+    // 'ngCookies',
+    // 'ngResource',
+    'ngRoute'
+    // 'ngSanitize',
+    // 'ngTouch'
   ])
   .config(function ($routeProvider) {
     $routeProvider
