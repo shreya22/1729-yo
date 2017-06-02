@@ -41,8 +41,8 @@
                 <b><p class="form-control-static">{{main.inputs.numbers[0]}}</p></b>
               </div>
               
-              <div class="form-group mx-sm-3 mx-xs-3">
-                    <select class="form-control" ng-model="main.testOperators[0]" required>
+              <div class="form-group mx-sm-3">
+                    <select class="form-control btn btn-mini" ng-model="main.testOperators[0]" required>
                         <option>+</option>
                         <option>-</option>
                         <option>*</option>
@@ -55,8 +55,8 @@
                 <b><p class="form-control-static">{{main.inputs.numbers[1]}}</p></b>
               </div>
 
-              <div class="form-group mx-sm-3 mx-xs-3">
-                    <select class="form-control" ng-model="main.testOperators[1]" required>
+              <div class="form-group mx-sm-3">
+                    <select class="form-control btn btn-mini" ng-model="main.testOperators[1]" required>
                         <option>+</option>
                         <option>-</option>
                         <option>*</option>
@@ -69,8 +69,8 @@
                 <b><p class="form-control-static">{{main.inputs.numbers[2]}}</p></b>
               </div>
 
-              <div class="form-group mx-sm-3 mx-xs-3">
-                    <select class="form-control" ng-model="main.testOperators[2]" required>
+              <div class="form-group mx-sm-3">
+                    <select class="form-control btn btn-mini" ng-model="main.testOperators[2]" required>
                         <option>+</option>
                         <option>-</option>
                         <option>*</option>
@@ -85,9 +85,8 @@
 
               <button class="btn btn-default text-center customButton" ng-click="main.validate()">Check Result</button>
 
-              <div class="error">{{main.validationError}}</div>
-
             </form>
+            <div class="error">{{main.validationError}}</div>
 
     </div>
 </div>
