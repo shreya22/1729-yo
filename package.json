@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "angular-bootstrap": "^0.12.2",
+    "angular-ui-bootstrap": "^2.5.0",
     "express": "^4.15.3",
     "generator-karma": "^2.0.0",
     "gzippo": "^0.2.0",

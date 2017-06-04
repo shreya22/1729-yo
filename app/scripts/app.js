@@ -13,7 +13,8 @@ angular
     // 'ngAnimate',
     // 'ngCookies',
     // 'ngResource',
-    'ngRoute'
+    'ngRoute',
+    'toastr'
     // 'ngSanitize',
     // 'ngTouch'
   ])

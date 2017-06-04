@@ -3,13 +3,15 @@
     <div class="row boxColour text-center">
 
             <h2 class="text-center">Lets Play!</h2>
-            <span>Using +, -, *, /, and = exactly once, complete the equation.</span>
+            <span>Using +, -, *, /, and = exactly once, complete the equation. 3 minutes is all you'hv got!</span>
 
             <!-- <button class="btn text-center pull-right btn-circle">{{main.timeLeft}}</button> -->
 
             <!--{{main.inputs}}; <br>-->
             <div>&nbsp;</div>
-            <button class="btn text-center customButton" ng-click="main.startGame()">Start Game</button>
+            <button class="btn text-center customButton" ng-click="main.startGame()">{{main.introText}}</button>
+            <button class="btn text-center pull-right btn-circle">{{main.timeLeft}}</button>
+
             
             <div>&nbsp;</div><div>&nbsp;</div>
 
@@ -63,7 +65,19 @@
               <button class="btn text-center customButton" ng-click="main.validate()">Check Result</button>
 
             </form>
-            <div class="error">{{main.validationError}}</div>
+            <div class="error">{{main.validationError}}&nbsp;</div>
+
+            <div>&nbsp;</div>
+            <b>
+            <div class="row">
+              <div class="col-sm-6">SCORE SO FAR...</div>
+              <div class="col-sm-2">Correct</div>
+              <div class="col-sm-1">{{main.correct}}</div>
+              <div class="col-sm-2">Incorrect</div>
+              <div class="col-sm-1">{{main.incorrect}}</div>
+            </div>
+            </b>
+
 
     </div>
 </div>

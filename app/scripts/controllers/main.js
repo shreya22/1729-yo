@@ -11,33 +11,35 @@ angular.module('1729App')
   .controller('MainCtrl', MainController);
 
 
-MainController.$inject= ['$scope', '$http', '$location', '$window', '$interval'];
+MainController.$inject= ['$scope', '$http', '$location', '$window', '$interval', 'toastr'];
 
-function MainController($scope, $http, $location, $window, $interval, $timeout){
+function MainController($scope, $http, $location, $window, $interval, toastr){
 console.log('maincontroller');
     var vm= this;
     vm.gotoElement = function (eID){
         anchorSmoothScroll.scrollTo(eID);
     };
 
+    vm.count=0;
+    vm.correct= 0;
+    vm.incorrect= 0;
+    vm.score= 0;
+    vm.worker;
+    vm.introText= "Start Game"; 
     vm.resultStatus= "click 'Check Result' to view!";
     vm.testSuccess= false;
-
     vm.inputs= {
         numbers: ['_', '_', '_', '_'],
         operators: []
     };
     vm.timer= null;
-    vm.timerStart= TimerStart;
-    vm.timerStop= TimerStop;
 
     vm.testOperators= ['', '', ''];
     vm.startGame= StartGame;
     vm.validate= Validate;
     vm.validationError= '';
-    vm.timeLeft= 10;
-
-
+    vm.timeLeft= 180;
+    vm.triggerTimer= TriggerTimer;
 
     var operators = {
         '+': function(a, b) { return a + b },
@@ -45,37 +47,31 @@ console.log('maincontroller');
     };
     var op= ['+', '-'];
 
-    // function StartGame(){};
-    // function CheckResult(){};
+    // function TimerStart(){
+    //     var decreaseCount= function(){
+    //         vm.timeLeft--;
+    //     };
+    //     vm.timer= $interval(decreaseCount, 1000, 180);
+    // }
 
-    function TimerStart(){
-        vm.timer= $interval(function(){
-            vm.timeLeft--;
-            if(vm.timeLeft == 0) vm.timerStop();
-        }, 1000);
-    }
-
-    function TimerStop(){
-        if (angular.isDefined(vm.timer)) {
-            $interval.cancel(vm.timer);
-        }
-        alert('Time Out!');
-        StartGame();
-    }
+    // function TimerStop(){
+    //     $interval.cancel(vm.timer);
+    //     alert('Time Out!');
+    // }
 
     function StartGame() {
-        // console.log('mainAPI');
 
         let a,b,c,d; 
         vm.testOperators= ['', '', ''];
         vm.validationError= "";
-        vm.timeLeft= 10;
-        // vm.timerStart();
+        vm.introText= "Next";
 
-         a= Math.floor((Math.random() * 9));
-         b= Math.floor((Math.random() * 9));
-         c= Math.floor((Math.random() * 9));
-         d= Math.floor((Math.random() * 9));
+        if(vm.count == 0) vm.triggerTimer();
+
+         a= Math.floor((Math.random() * 8)+1);
+         b= Math.floor((Math.random() * 8)+1);
+         c= Math.floor((Math.random() * 8)+1);
+         d= Math.floor((Math.random() * 8)+1);
 
         // console.log('a b c d', a, b, c, d);
 
@@ -172,16 +168,19 @@ console.log('maincontroller');
             operators: vm.testOperators
         }
 
+        vm.isCorrect= false;
         if(CheckResult(postObj).success == true){
-            alert("woohooo! You're a champ.");
-            // vm.inputs.numbers= ['_', '_', '_', '_'];
-            // vm.testOperators= [];
-
-            console.log('again..');
-            StartGame();
+            toastr.success("Correct! There goes your +2.");
+            vm.isCorrect= true;
+            vm.correct= vm.correct+1;
         }
-        else alert("no dear.. please try again.");
+        else {
+            toastr.error("Sorry dear... -1 for you!");
+            vm.incorrect= vm.incorrect+1;
+        }
 
+        vm.count= vm.count+1;
+        if(vm.isCorrect) StartGame();
     }
 
     let totalOperations= ['+', '-', '*', '/'];
@@ -200,8 +199,7 @@ console.log('maincontroller');
     };
 
 
-    function CheckResult(postObj){ console.log('postObj', postObj);
-
+    function CheckResult(postObj){ 
         let numbers= postObj.numbers;
         let operations= postObj.operators;
 
@@ -306,6 +304,25 @@ console.log('maincontroller');
             status: true,
             message: ""
         }
+    }
+
+
+    function TriggerTimer(){ 
+        vm.worker = new Worker('./worker.js');
+        vm.worker.onmessage = function(e) {
+            // console.log('timerResponse', e);
+
+            if(e.data.isTimeOut){
+                var score= 2*vm.correct - vm.incorrect
+                alert("Your score is "+ score);
+                $window.location.href = '/';
+            }
+
+            vm.timeLeft = e.data.time;
+            $scope.$apply();
+        };
+
+        vm.worker.postMessage(vm.timeLeft);
     }
 
 };
