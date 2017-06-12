@@ -26,7 +26,7 @@ console.log('maincontroller');
     vm.score= 0;
     vm.worker;
     vm.introText= "Start Game"; 
-    vm.resultStatus= "click 'Check Result' to view!";
+    vm.resultStatus= "click 'Submit' to view!";
     vm.testSuccess= false;
     vm.inputs= {
         numbers: ['_', '_', '_', '_'],
@@ -64,7 +64,7 @@ console.log('maincontroller');
         let a,b,c,d; 
         vm.testOperators= ['', '', ''];
         vm.validationError= "";
-        vm.introText= "Next";
+        vm.introText= "Skip";
 
         if(vm.count == 0) vm.triggerTimer();
 
