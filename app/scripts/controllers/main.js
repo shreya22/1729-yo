@@ -38,7 +38,7 @@ console.log('maincontroller');
     vm.startGame= StartGame;
     vm.validate= Validate;
     vm.validationError= '';
-    vm.timeLeft= 10;
+    vm.timeLeft= 180;
     vm.triggerTimer= TriggerTimer;
 
     var operators = {
