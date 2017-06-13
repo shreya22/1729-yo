@@ -249,7 +249,7 @@ console.log('maincontroller');
                 stack.push(infixArr[i]);
             }
             else{
-                if(priority[stack[stack.length-1]] > priority[infixArr[i]]){
+                if(priority[stack[stack.length-1]] >= priority[infixArr[i]]){
                     let x= stack.pop();
                     postfixArr.push(x);
                 }
