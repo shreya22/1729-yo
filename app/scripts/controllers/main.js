@@ -13,7 +13,7 @@ angular.module('1729App')
 
 MainController.$inject= ['$scope', '$http', '$location', '$window', '$interval', 'toastr'];
 
-function MainController($scope, $http, $location, $window, $interval, toastr){
+function MainController($scope, $http, $location, $window, $interval, toastr, SweetAlert){
 console.log('maincontroller');
     var vm= this;
     vm.gotoElement = function (eID){
@@ -38,7 +38,7 @@ console.log('maincontroller');
     vm.startGame= StartGame;
     vm.validate= Validate;
     vm.validationError= '';
-    vm.timeLeft= 180;
+    vm.timeLeft= 10;
     vm.triggerTimer= TriggerTimer;
 
     var operators = {
@@ -313,9 +313,25 @@ console.log('maincontroller');
             // console.log('timerResponse', e);
 
             if(e.data.isTimeOut){
-                var score= 2*vm.correct - vm.incorrect
-                alert("Your score is "+ score);
-                $window.location.href = '/';
+                var score= 2*vm.correct - vm.incorrect;
+
+                var text;
+
+                if(score < 5) text= "You need to work upon your speed..";
+                else if(5<=score<20) text= "Keep it up!";
+                else text= "You're as fast as minato!";
+
+                swal({
+                  title: text,
+                  text: "Your score is: "+score,
+                  type: 'success',
+                  confirmButtonColor: '#3085d6',
+                  confirmButtonText: 'New Game'
+                }).then(function () {
+                  $window.location.href = '/';
+                }, function(dismiss){
+                    $window.location.href = '/';
+                })
             }
 
             vm.timeLeft = e.data.time;

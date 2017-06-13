@@ -7,10 +7,10 @@ self.onmessage = function(e) {
   function toDo() {
 
     time = time - 1;
-    if(time == -1) clearInterval(timer);
+    if(time == 0) clearInterval(timer);
     postMessage({
       time: time,
-      isTimeOut: (time==-1)?true:false
+      isTimeOut: (time==0)?true:false
     });
   }
 
