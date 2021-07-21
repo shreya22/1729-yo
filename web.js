@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/app/scripts/controllers'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 app.use('/', function(req, res){
-	res.render('./app/index.html');
+	res.render(__dirname + '/app/index.html');
 })
 app.listen(5000, function(){
 	console.log('express server listening on port ', 5000);
